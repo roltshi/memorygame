@@ -47,7 +47,7 @@ a {
   transform: rotateY(180deg);
 }
 #status {
-  margin: 0;
+  margin-top: 30px;
   border-radius: 15px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.685);
@@ -117,5 +117,18 @@ a {
   }
   #status {
     font-size: 20px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .diffpanel h1 {
+    color: white;
+    font-size: 20px;
+  }
+  .diff-btn {
+    cursor: pointer;
+    font-size: 12px;
+    margin: 1px;
+    padding: 10px;
+    border: none;
   }
 }
