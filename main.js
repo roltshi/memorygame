@@ -6,9 +6,9 @@ function shuffle(a) {
   return a;
 }
 
-function createBoxes() {
+function createBoxes(diff) {
   let game = document.querySelector(".game-display");
-  let imgurls = [
+  let easyurls = [
     "images/img1.jpg",
     "images/img2.jpg",
     "images/img3.jpg",
@@ -16,7 +16,38 @@ function createBoxes() {
     "images/img5.jpg",
     "images/img6.jpg",
   ];
-  let urls = [...imgurls, ...imgurls];
+  let mediumurls = [
+    ...easyurls,
+    "images/img7.jpg",
+    "images/img8.jpg",
+    "images/img9.jpg",
+    "images/img10.jpg",
+    "images/img11.jpg",
+    "images/img12.jpg",
+  ];
+  let hardurls = [
+    ...mediumurls,
+    "images/img13.jpg",
+    "images/img14.jpg",
+    "images/img15.jpg",
+    "images/img16.jpg",
+    "images/img17.jpg",
+    "images/img18.jpg",
+    "images/img19.jpg",
+    "images/img20.jpg",
+    "images/img21.jpg",
+    "images/img22.jpg",
+    "images/img23.jpg",
+    "images/img24.jpg",
+  ];
+  let urls = "";
+  if (diff == "easy") {
+    urls = [...easyurls, ...easyurls];
+  } else if (diff == "medium") {
+    urls = [...mediumurls, ...mediumurls];
+  } else if (diff == "hard") {
+    urls = [...hardurls, ...hardurls];
+  }
   shuffle(urls);
 
   for (let i = 0; i < urls.length; i++) {
@@ -61,21 +92,44 @@ $(function () {
   let box2 = "";
 
   // Create boxes
-  createBoxes();
-  // Flip
-  $(".box").click(function () {
+
+  //game mode Easy
+  $("#btn-easy").on("click", function () {
+    $(".game-display").html("");
+    $(".diffpanel").fadeOut();
+    createBoxes("easy");
+  });
+
+  //game mode Medium
+  $("#btn-medium").on("click", function () {
+    $(".game-display").html("");
+    $(".diffpanel").fadeOut();
+    createBoxes("medium");
+  });
+
+  //game mode Hard
+  $("#btn-hard").on("click", function () {
+    $(".game-display").html("");
+    $(".diffpanel").fadeOut();
+    createBoxes("hard");
+  });
+
+  // Game mechanic
+  $(".game-display").on("click", ".box", function () {
     let img = $(this).children();
     let src = $(this).children().attr("data-id");
-    $("#status").text("");
+    $("#status").text("...");
 
     clicks++;
 
+    //First Click
     if (clicks == 1) {
       box1 = img;
       box1.parent().css("pointer-events", "none");
       box1.parent().addClass("animate");
       img.attr("src", src);
     }
+    //Second Click
     if (clicks == 2) {
       box2 = img;
       box2.parent().addClass("animate");
@@ -84,6 +138,7 @@ $(function () {
 
       if (box1.attr("data-flipped") === "false" && box2.attr("data-flipped") === "false") {
         if (isMatching(box1.attr("data-id"), box2.attr("data-id"))) {
+          // If it macthes
           $("#status").text("Találat!");
 
           box1.attr("data-flipped", "true");

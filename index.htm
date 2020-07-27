@@ -12,10 +12,18 @@
     <title>Memory Game</title>
   </head>
   <body>
-    <span id="tag"><a href="https://github.com/roltshi/">@roltshi</a></span>
+    <div class="diffpanel">
+      <h1>Válassz nehézséget!</h1>
+      <div class="btns">
+        <input type="button" class="diff-btn" id="btn-easy" value="Könnyű" />
+        <!-- 6 kártya -->
+        <input type="button" class="diff-btn" id="btn-medium" value="Közepes" /><!-- 12 kártya -->
+        <input type="button" class="diff-btn" id="btn-hard" value="Nehéz" /><!-- 24 kártya -->
+      </div>
+    </div>
+    <span id="tag"><a href="https://github.com/roltshi/">@roltshi</a> Memory Game</span>
     <div class="game">
-      <h1>Memory game</h1>
-      <p id="status"></p>
+      <p id="status">...</p>
       <div class="game-display"></div>
     </div>
     <script src="main.js"></script>

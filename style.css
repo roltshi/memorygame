@@ -9,6 +9,7 @@ a {
   text-decoration: none;
 }
 .game {
+  z-index: 1;
   background-image: url("bg.svg");
   width: 100%;
   min-height: 100vh;
@@ -17,11 +18,7 @@ a {
   justify-content: center;
   align-items: center;
 }
-.game h1 {
-  text-transform: uppercase;
-  color: white;
-  text-shadow: 2px 3px 3px black;
-}
+
 .game-display {
   display: flex;
   flex-wrap: wrap;
@@ -44,13 +41,18 @@ a {
 .game-display .box img {
   width: 150px;
   display: inline-block;
+  transform: rotateY(180deg);
 }
 #status {
+  border-radius: 15px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.685);
   height: 30px;
   font-size: 25px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgb(8, 99, 8);
+  text-shadow: 2px 3px 2px black;
+  color: rgb(0, 255, 55);
   font-weight: bolder;
 }
 .animate {
@@ -62,7 +64,36 @@ a {
   top: 0;
   left: 0;
 }
-
+.diffpanel {
+  background-color: rgba(0, 0, 0, 0.89);
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.diffpanel h1 {
+  color: white;
+  font-size: 30px;
+}
+.diff-btn {
+  font-size: 18px;
+  margin: 5px;
+  padding: 15px;
+  border: none;
+}
+.diff-btn:nth-child(2) {
+  background-color: rgb(212, 212, 30);
+}
+.diff-btn:nth-child(3) {
+  background-color: rgb(202, 34, 34);
+  color: white;
+}
 @media screen and (max-width: 990px) {
   .game-display .box {
     overflow: hidden;
