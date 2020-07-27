@@ -115,7 +115,12 @@ $(function () {
   });
 
   // Game mechanic
+
   $(".game-display").on("click", ".box", function () {
+    if ($(".box").hasClass("animate-back")) {
+      $(".box").removeClass("animate-back");
+    }
+
     let img = $(this).children();
     let src = $(this).children().attr("data-id");
     $("#status").text("...");
@@ -140,7 +145,6 @@ $(function () {
         if (isMatching(box1.attr("data-id"), box2.attr("data-id"))) {
           // If it macthes
           $("#status").text("Találat!");
-
           box1.attr("data-flipped", "true");
           box2.attr("data-flipped", "true");
           isWin();
@@ -151,6 +155,8 @@ $(function () {
             box2.attr("src", "images/question.png");
             box1.parent().css("pointer-events", "auto");
             box2.parent().css("pointer-events", "auto");
+            box1.parent().addClass("animate-back");
+            box2.parent().addClass("animate-back");
             box1.parent().removeClass("animate");
             box2.parent().removeClass("animate");
             clicks = 0;
